@@ -771,9 +771,13 @@ public class TVideoActivity extends AppCompatActivity {
 - **raw** — произвольные файлы в исходном виде (аудио, видео, текстовые файлы)
 - **values** — строки (strings.xml), цвета (colors.xml), размеры (dimens.xml), стили и массивы
 
+---
+
 2. **Как добавить изображение в приложение и отобразить его в ImageView двумя способами (из ресурсов и из файловой системы)?**
 - Из ресурсов drawable: `android:src="@drawable/my_image"` в XML или `imageView.setImageResource(R.drawable.my_image);` в коде
 - Из файловой системы: с использованием `BitmapFactory` и указанием пути к файлу (требуется разрешение `READ_EXTERNAL_STORAGE` или `READ_MEDIA_IMAGES` для Android 13+)
+
+---
 
 3. **Опишите жизненный цикл MediaPlayer. Какие методы необходимо вызвать для воспроизведения аудиофайла из ресурсов?**<br>
 Idle → Prepared → Started → Paused → Stopped → Reset/End<br>
@@ -783,6 +787,8 @@ MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.audio_sample);
 mediaPlayer.start();
 ```
 
+---
+
 4. **Для чего используется класс AudioManager? Как получить его экземпляр и изменить громкость?**<br>
 Используется для управления громкостью системы.<br>
 **Получение экземпляра и изменение громкости:**
@@ -791,6 +797,8 @@ AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVIC
 int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, newVolume, 0);
 ```
+
+---
 
 5. **Что такое VideoView и MediaController? Как их использовать для создания простого видеоплеера?**
 - **VideoView** — виджет для воспроизведения видео (включает встроенный MediaPlayer)
@@ -804,13 +812,19 @@ videoView.setVideoURI(Uri.parse(videoPath));
 videoView.start();
 ```
 
+---
+
 6. **Почему при обновлении UI (например, SeekBar) из TimerTask нужно использовать runOnUiThread()?**<br>
 `TimerTask` выполняется в фоновом потоке, а обновление UI в Android разрешено только в главном (UI) потоке. `runOnUiThread()` обеспечивает выполнение кода в главном потоке.
+
+---
 
 7. **Как сделать, чтобы аудиофайл воспроизводился бесконечно (зацикливался)?**
 ```java
 mediaPlayer.setLooping(true);
 ```
+
+---
 
 8. **Какие разрешения необходимы для доступа к медиафайлам на внешнем хранилище в разных версиях Android?**
 - **До Android 13:** `READ_EXTERNAL_STORAGE`
